@@ -1,0 +1,116 @@
+@font-face {
+  font-family: "TCM";
+  src: url("TCM.TTF") format("truetype");
+}
+
+body {
+  font-family: TCM, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  margin: 60px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0%;
+    transform: translate3d(0, 40px, 0);
+  }
+  to {
+    opacity: 100%;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.mainTitle {
+  display: flex;
+  justify-content: center;
+
+  font-size: max(min(4vw, 2.4rem), 1.8rem);
+  font-weight: 700;
+
+  margin: margin: max(min(3vw, 40px), 20px);
+
+  animation: fadeIn 1s;
+  animation-delay: 0.2s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+
+.disponibles {
+  display: flex;
+  justify-content: center;
+  font-size: max(min(2.5vw, 1.7rem), 1.1rem);
+  margin: max(min(3vw, 30px), 10px);
+
+  animation: fadeIn 1s;
+  animation-delay: 0.3s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+}
+
+.staticGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+.disponible {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: max(min(1.5vw, 1.5rem), 1rem);
+  font-weight: 600;
+
+  border-radius: max(min(1vw, 10px), 6px);
+  height: max(min(12vw, 180px), 120px);
+  width: 100%;
+  max-width: max(min(8vw, 120px), 80px);
+  margin: 10px;
+  background-color: #77dd66;
+
+  transition: 0.3s;
+
+  animation: fadeIn 1s;
+  animation-delay: 0.4s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+
+.disponible:hover {
+  background-color: #8fe381;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.ocupado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: max(min(1.5vw, 1.5rem), 1rem);
+    font-weight: 600;
+  
+    border-radius: max(min(1vw, 10px), 6px);
+    height: max(min(12vw, 180px), 120px);
+    width: 100%;
+    max-width: max(min(8vw, 120px), 80px);
+    margin: 10px;
+    background-color: #df2c14;
+  
+    transition: 0.3s;
+  
+    animation: fadeIn 1s;
+    animation-delay: 0.4s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+  }
+
+  .ocupado:hover {
+    background-color: #ff6961;
+    transition: 0.3s;
+    cursor: pointer;
+  }
