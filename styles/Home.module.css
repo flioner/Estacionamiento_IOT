@@ -84,6 +84,9 @@
   animation-timing-function: ease-in-out;
 }
 
+.fueraDeServicio {
+  background-color: #808080;
+}
 .disponible {
   background-color: #77dd66;
 }

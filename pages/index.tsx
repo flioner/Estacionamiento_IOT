@@ -6,7 +6,8 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, onValue, ref } from "firebase/database";
 
 export default function Home() {
-  const [lugares, updateLugares] = useState([11]);
+  const [lugares, updateLugares] = useState([0, 0, 0, 0]);
+  const [boolLugares, updateBools] = useState([false, false]);
 
   const firebaseConfig = {
     apiKey: "",
@@ -26,6 +27,21 @@ export default function Home() {
     updateLugares(newLugares);
   };
 
+  const UpdateAllBools = (arr: any, pos: number) => {
+    const newBools = [];
+    for (let i = 0; i < arr.length; i++) {
+      if (i == pos) {
+        newBools.push(!arr[i]);
+        if (!arr[i]) {
+          UpdateAllLugares(lugares, i);
+        }
+      } else {
+        newBools.push(arr[i]);
+      }
+    }
+    updateBools(newBools);
+  };
+
   const AddLugar = () => {
     const newLugares = lugares;
     newLugares.push(0);
@@ -35,14 +51,13 @@ export default function Home() {
   const database = getDatabase(firebaseApp);
 
   useEffect(() => {
-    const starCountRef = ref(database, "e1");
+    const starCountRef = ref(database, "lugar 1");
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       console.log(data);
       if (data != null) {
-        updateLugares([1]);
+        updateLugares([data]);
       }
-      updateLugares([1]);
     });
   }, []);
 
@@ -64,25 +79,23 @@ export default function Home() {
 
       <div className={s.grid}>
         <div
-          className={`${s.lugar} ${lugares[0] != 1 ? s.disponible : s.ocupado}`}
+          onClick={() => UpdateAllBools(boolLugares, 0)}
+          className={`${s.lugar} ${
+            boolLugares[0] == false ? s.disponible : s.ocupado
+          }`}
         >
           1
         </div>
         <div
-          className={`${s.lugar} ${lugares[1] != 1 ? s.disponible : s.ocupado}`}
+          onClick={() => UpdateAllBools(boolLugares, 1)}
+          className={`${s.lugar} ${
+            boolLugares[1] == false ? s.disponible : s.ocupado
+          }`}
         >
           2
         </div>
-        <div
-          className={`${s.lugar} ${lugares[2] != 1 ? s.disponible : s.ocupado}`}
-        >
-          3
-        </div>
-        <div
-          className={`${s.lugar} ${lugares[3] != 1 ? s.disponible : s.ocupado}`}
-        >
-          4
-        </div>
+        <div className={`${s.lugar} ${s.fueraDeServicio}`}>3</div>
+        <div className={`${s.lugar} ${s.fueraDeServicio}`}>4</div>
       </div>
 
       <div className={s.disponibles}>
