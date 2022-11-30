@@ -54,11 +54,27 @@ export default function Home() {
     updateBools(newBools);
   };
 
+  const UpdateAllBoolsSpecific = (arr: any, pos: number, res: boolean) => {
+    const newBools = [];
+    for (let i = 0; i < arr.length; i++) {
+      if (i == pos) {
+        newBools.push(res);
+        if (res != arr[i]) {
+          UpdateAllLugares(lugares, i);
+        }
+      } else {
+        newBools.push(arr[i]);
+      }
+    }
+    updateBools(newBools);
+  };
+
   const AddLugar = () => {
     const newLugares = lugares;
     newLugares.push(0);
     updateLugares(newLugares);
   };
+
   const firebaseApp = initializeApp(firebaseConfig);
   const database = getDatabase(firebaseApp);
 
@@ -68,7 +84,7 @@ export default function Home() {
       const data = snapshot.val();
       console.log(data);
       if (data != null) {
-        updateLugares([data]);
+        UpdateAllBoolsSpecific(lugares, 0, [data]);
       }
     });
   }, []);
@@ -86,7 +102,7 @@ export default function Home() {
       <div className={s.mainTitle}>Estacionamiento</div>
       <div className={s.mainTxt}>
         <div>Lugares Disponibles:&nbsp;</div>
-        <div>{lugares[0]}</div>
+        <div>{Number(!boolLugares[0]) + Number(!boolLugares[1])}</div>
       </div>
 
       <div className={s.grid}>
@@ -175,6 +191,7 @@ export default function Home() {
                   ))}
                 </div>
               ))}
+              <div className={s.finalPadding} />
             </div>
           </div>
         </div>

@@ -81,6 +81,7 @@
 .grid {
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .sideBtnCont {
@@ -101,6 +102,7 @@
   animation-timing-function: ease-in-out;
 }
 .sideBtn:hover {
+  cursor: pointer;
   border: 2.5px solid #ddd;
   background-color: #e7e7e7;
   transition: 0.3s;
@@ -138,6 +140,9 @@
 
 .fueraDeServicio {
   background-color: #808080;
+}
+.fueraDeServicio:hover {
+  cursor: pointer;
 }
 .disponible {
   background-color: #77dd66;
@@ -190,18 +195,26 @@
 .modal {
   display: flex;
   justify-content: center;
-  align-items: center;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   position: absolute;
+  max-height: 90%;
+  overflow: auto;
   height: fit-content;
   width: fit-content;
   border-radius: max(min(2vw, 12px), 8px);
-
-  padding: max(min(3.5vw, 50px), 18px) max(min(2vw, 50px), 10px)
-    max(min(9vw, 120px), 60px) max(min(2vw, 50px), 10px);
+  padding: max(min(3.5vw, 50px), 18px) max(min(2vw, 50px), 10px);
   background-color: white;
   box-shadow: 0 0 1000px 5000px rgba(0, 0, 0, 0.3);
 }
 
+.finalPadding {
+  padding-bottom: max(min(9vw, 100px), 60px);
+}
+
+.modal::-webkit-scrollbar {
+  display: none;
+}
 .modal2 {
   display: flex;
   justify-content: center;
