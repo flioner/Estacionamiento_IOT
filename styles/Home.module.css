@@ -62,7 +62,8 @@
   grid-gap: 1rem;
 }
 
-.disponible {
+/* Pods */
+.lugar {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,7 +75,6 @@
   width: 100%;
   max-width: max(min(8vw, 120px), 80px);
   margin: 10px;
-  background-color: #77dd66;
 
   transition: 0.3s;
 
@@ -82,6 +82,10 @@
   animation-delay: 0.4s;
   animation-fill-mode: both;
   animation-timing-function: ease-in-out;
+}
+
+.disponible {
+  background-color: #77dd66;
 }
 
 .disponible:hover {
@@ -91,29 +95,37 @@
 }
 
 .ocupado {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: max(min(1.5vw, 1.5rem), 1rem);
-  font-weight: 600;
-
-  border-radius: max(min(1vw, 10px), 6px);
-  height: max(min(12vw, 180px), 120px);
-  width: 100%;
-  max-width: max(min(8vw, 120px), 80px);
-  margin: 10px;
   background-color: #df2c14;
-
-  transition: 0.3s;
-
-  animation: fadeIn 1s;
-  animation-delay: 0.4s;
-  animation-fill-mode: both;
-  animation-timing-function: ease-in-out;
 }
 
 .ocupado:hover {
   background-color: #ff6961;
   transition: 0.3s;
   cursor: pointer;
+}
+
+/* Heat Map */
+
+.lime {
+  background-color: #bfff67;
+}
+
+.green {
+  background-color: #77dd66;
+}
+
+.yellow {
+  background-color: #f9e81a;
+}
+
+.orange {
+  background-color: #ff9320;
+}
+
+.red {
+  background-color: #df2c14;
+}
+
+.darkRed {
+  background-color: #af0000;
 }
