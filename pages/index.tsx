@@ -9,9 +9,9 @@ export default function Home() {
   const [lugares, updateDisponibles] = useState(0);
 
   const firebaseConfig = {
-    apiKey: "API_KEY",
-    authDomain: `estacionamiento-automatizado.firebaseapp.com`,
-    databaseURL: `https://estacionamiento-automatizado-default-rtdb.firebaseio.com/`,
+    apiKey: "",
+    authDomain: ``,
+    databaseURL: ``,
   };
 
   const firebaseApp = initializeApp(firebaseConfig);
