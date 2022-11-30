@@ -4,15 +4,27 @@ import s from "../styles/Home.module.css";
 import Firebase from "firebase/app";
 import { initializeApp } from "firebase/app";
 import { getDatabase, onValue, ref } from "firebase/database";
+import { Modal } from "../components/modal/modal";
 
 export default function Home() {
+  const [historialLugares, updateHistorical] = useState([[]]);
   const [lugares, updateLugares] = useState([0, 0, 0, 0]);
   const [boolLugares, updateBools] = useState([false, false]);
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [sinServicio, openSinServicio] = useState(false);
 
   const firebaseConfig = {
     apiKey: "",
     authDomain: ``,
     databaseURL: ``,
+  };
+
+  const newHour = (arr: any) => {
+    const resetLugares = [0, 0, 0, 0];
+    const newHistorical = [...historialLugares, arr];
+    updateHistorical(newHistorical);
+    updateLugares(resetLugares);
   };
 
   const UpdateAllLugares = (arr: any, pos: number) => {
@@ -72,7 +84,7 @@ export default function Home() {
       </Head>
 
       <div className={s.mainTitle}>Estacionamiento</div>
-      <div className={s.disponibles}>
+      <div className={s.mainTxt}>
         <div>Lugares Disponibles:&nbsp;</div>
         <div>{lugares[0]}</div>
       </div>
@@ -94,19 +106,85 @@ export default function Home() {
         >
           2
         </div>
-        <div className={`${s.lugar} ${s.fueraDeServicio}`}>3</div>
-        <div className={`${s.lugar} ${s.fueraDeServicio}`}>4</div>
+        <div
+          onClick={() => openSinServicio(true)}
+          className={`${s.lugar} ${s.fueraDeServicio}`}
+        >
+          3
+        </div>
+        <div
+          onClick={() => openSinServicio(true)}
+          className={`${s.lugar} ${s.fueraDeServicio}`}
+        >
+          4
+        </div>
       </div>
 
-      <div className={s.disponibles}>
-        <div onClick={() => AddLugar()}>Lugares más concurridos:</div>
+      <Modal isOpen={sinServicio} setOpen={openSinServicio}>
+        <div className={s.modal2}>
+          <div className={s.subTitle}> Fuera de Servicio </div>
+        </div>
+        <div
+          onClick={() => openSinServicio(false)}
+          className={s.closeModal}
+        ></div>
+      </Modal>
+
+      <div className={s.mainTxt}>
+        <div>Lugares más concurridos:</div>
       </div>
+
+      <div className={s.sideBtnCont}>
+        <div className={s.sideBtn} onClick={() => newHour(lugares)}>
+          Reset Heatmap
+        </div>
+        <div onClick={() => setIsOpen(true)} className={s.sideBtn}>
+          Historial
+        </div>
+      </div>
+
+      <Modal isOpen={modalIsOpen} setOpen={setIsOpen}>
+        <div className={s.modal}>
+          <div className={s.tempFlex}>
+            <div className={s.subTitle}> Historial </div>
+            <div className={historialLugares.length == 1 ? s.subTxt : s.hidden}>
+              Historial Vacío
+            </div>
+            <div>
+              {historialLugares.map((arr, i) => (
+                <div className={s.grid} key={i}>
+                  {arr.map((dat, j) => (
+                    <div
+                      key={j}
+                      className={`${s.lugar} ${
+                        arr[j] <= 3
+                          ? s.lime
+                          : arr[j] <= 5
+                          ? s.green
+                          : arr[j] <= 7
+                          ? s.yellow
+                          : arr[j] <= 9
+                          ? s.orange
+                          : arr[j] <= 11
+                          ? s.red
+                          : s.darkRed
+                      }`}
+                    >
+                      {arr[j]}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div onClick={() => setIsOpen(false)} className={s.closeModal}></div>
+      </Modal>
 
       <div className={s.grid}>
         {lugares.map((l, i) => (
           <div
             key={i}
-            onClick={() => UpdateAllLugares(lugares, i)}
             className={`${s.lugar} ${
               lugares[i] <= 3
                 ? s.lime

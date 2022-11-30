@@ -38,7 +38,23 @@
   animation-timing-function: ease-in-out;
 }
 
-.disponibles {
+.subTitle {
+  display: flex;
+  justify-content: center;
+  flex-basis: 100%;
+
+  font-size: max(min(2.5vw, 1.8rem), 1.1rem);
+  font-weight: 700;
+
+  margin: max(min(3vw, 40px), 20px);
+
+  animation: fadeIn 1s;
+  animation-delay: 0.2s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+
+.mainTxt {
   display: flex;
   justify-content: center;
   font-size: max(min(2.5vw, 1.7rem), 1.1rem);
@@ -50,9 +66,44 @@
   animation-timing-function: ease-in-out;
 }
 
+.subTxt {
+  display: flex;
+  justify-content: center;
+  font-size: max(min(2vw, 1.3rem), 0.9rem);
+  margin: max(min(3vw, 30px), 10px);
+
+  animation: fadeIn 1s;
+  animation-delay: 0.3s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+
 .grid {
   display: flex;
   justify-content: center;
+}
+
+.sideBtnCont {
+  display: flex;
+  justify-content: center;
+}
+
+.sideBtn {
+  margin: max(min(1vw, 10px), 5px);
+  padding: max(min(1vw, 10px), 5px);
+  border-radius: 8px;
+  border: 2.5px solid #ddd;
+  background-color: #f0f0f0;
+  transition: 0.3s;
+  animation: fadeIn 1s;
+  animation-delay: 0.4s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+.sideBtn:hover {
+  border: 2.5px solid #ddd;
+  background-color: #e7e7e7;
+  transition: 0.3s;
 }
 
 .staticGrid {
@@ -71,9 +122,10 @@
   font-weight: 600;
 
   border-radius: max(min(1vw, 10px), 6px);
+
   height: max(min(12vw, 180px), 120px);
-  width: 100%;
-  max-width: max(min(8vw, 120px), 80px);
+  width: max(min(8vw, 120px), 80px);
+
   margin: 10px;
 
   transition: 0.3s;
@@ -131,4 +183,54 @@
 
 .darkRed {
   background-color: #af0000;
+}
+
+/* Modal */
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: fit-content;
+  width: fit-content;
+  border-radius: max(min(2vw, 12px), 8px);
+
+  padding: max(min(3.5vw, 50px), 18px) max(min(2vw, 50px), 10px)
+    max(min(9vw, 120px), 60px) max(min(2vw, 50px), 10px);
+  background-color: white;
+  box-shadow: 0 0 1000px 5000px rgba(0, 0, 0, 0.3);
+}
+
+.modal2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: fit-content;
+  width: fit-content;
+  border-radius: max(min(2vw, 12px), 8px);
+  padding: 30px;
+  background-color: white;
+  box-shadow: 0 0 1000px 5000px rgba(0, 0, 0, 0.3);
+}
+
+.closeModal {
+  width: 100%;
+  height: 100%;
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
+
+.tempFlex {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hidden {
+  display: none;
 }
